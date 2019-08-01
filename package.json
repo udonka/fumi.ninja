@@ -13,6 +13,10 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
+  "plugins": [
+    "transform-react-pug",
+    "transform-react-jsx"
+  ],
   "eslintConfig": {
     "extends": "react-app"
   },
@@ -27,5 +31,9 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "babel-plugin-transform-react-pug": "^7.0.1",
+    "node-sass": "^4.12.0"
   }
 }

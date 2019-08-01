@@ -1,0 +1,224 @@
+$border-radius: 3px
+$item-height: 3rem
+$header-height: 3rem
+
+html 
+  font-size: 62.5%
+
+
+
+body
+  font-size: 1.6rem
+  padding: 0
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+
+* 
+  box-sizing: border-box
+  margin: 0
+  padding: 0
+
+h1,h2,h3,h4,h5,h6
+  font-size: inherit
+  
+
+.c-page-wrapper
+  display: flex
+  flex-direction: column
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+
+  >.e-header
+    flex: 0 0 auto
+    background: black
+    color: white
+
+  >.e-content
+    flex: 1 1 auto
+    overflow: auto
+    -webkit-overflow-scrolling: touch
+    position: relative
+
+  >.e-footer
+    margin-top:auto
+    flex: 0 0 auto
+    background: black
+    color: white
+
+
+.c-nenpyos
+  position: relative
+  background: red
+  min-width: 100%
+  display: inline-block
+  margin-top: $header-height
+
+  >.e-years
+    //c-year-lines
+
+  >.e-containers
+    position: relative
+    z-index: 2
+    margin-left: 5rem  //e-year-lines の e-yearのため
+    display: flex
+    justify-content: flex-start
+    >.e-col
+      flex: 1 0 auto
+      width: 20rem
+      margin-right: 1rem
+      position: relative
+      background: yellow
+
+.c-year-lines
+  position: absolute
+  z-index: 1
+  background: #eee
+  top: 0
+  left: 0
+  right: 0
+    
+  >.e-list
+    >.e-line
+      line-height: 1
+      height: $item-height
+      border-bottom: 1px solid white
+      >.e-year
+        line-height: 1
+        padding: .5rem
+        font-size: 1.2rem
+        color: #aaa
+      >.e-content
+
+.c-sub-nenpyo //c-nenpyos>.e-containers>.e-col の中
+  position: absolute
+  top: 0
+  left: 0
+  right: 0
+  background: rgba(255,255,255,0.6)
+
+  >.e-header
+    position: absolute
+    top: - $header-height
+    left: 0
+    right: 0
+    background: #aaa
+    border-top-left-radius: $border-radius
+    border-top-right-radius: $border-radius
+    height: $header-height
+
+    >.e-title 
+      margin-left: 1rem
+      line-height: $header-height
+      
+
+  >.e-list
+    display: flex
+    flex-direction: column
+
+    >.e-item
+      display: flex
+      height: $item-height
+
+      &:hover
+        >.e-year
+          background: yellow
+        >.e-content
+          overflow: visible
+          z-index: 1
+          >.e-paper
+            background: yellow
+            box-shadow: 0 2px 3px rgba(0,0,0,0.3)
+
+      >.e-year
+        flex: 0 0 auto
+        width: 5rem 
+        background: #ddd
+        padding: .5rem
+        font-size: 1.2rem
+        color: #aaa
+
+      >.e-content
+        flex: 1 1 auto
+        overflow: hidden
+        position: relative
+        
+
+        >.e-paper
+          padding: .5rem
+          background: white
+
+.c-popup-nenpyo //c-nenpyos>.e-containers>.e-col の中
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  bottom: 0
+  z-index: 10
+  background: rgba(255,255,255,0.6)
+  overflow: scroll
+  display: none
+
+  &.is-shown
+    display: block
+
+  >.e-shadow
+    height: 100%
+    background: rgba(0,0,0,0.8)
+
+
+    >.e-nenpyo
+      width: 40rem
+      margin: 0 auto
+
+      >.e-header
+        background: #aaa
+        border-top-left-radius: $border-radius
+        border-top-right-radius: $border-radius
+        height: $header-height
+
+        >.e-title 
+          margin-left: 1rem
+          line-height: $header-height
+          
+
+      >.e-list
+        display: flex
+        flex-direction: column
+
+        >.e-item
+          display: flex
+
+          &:hover
+            >.e-year
+              background: yellow
+            >.e-content
+              overflow: visible
+              z-index: 1
+              >.e-paper
+                background: yellow
+                box-shadow: 0 2px 3px rgba(0,0,0,0.3)
+
+          >.e-year
+            flex: 0 0 auto
+            width: 5rem 
+            background: #ddd
+            padding: .5rem
+            font-size: 1.2rem
+            color: #aaa
+
+          >.e-content
+            flex: 1 1 auto
+            overflow: hidden
+            position: relative
+            
+
+            >.e-paper
+              padding: .5rem
+              background: white
