@@ -7,6 +7,7 @@
   bottom: 0
   z-index: 10
 
+  background: black
 
   &.is-shown
     display: block
@@ -21,72 +22,112 @@
 
   >.e-nenpyo-wrapper
     position: absolute
-    top: 0
+    top: 2rem
     left: 0
     right: 0
-    max-height: 100%
-    max-width: 100%
+    bottom: 2rem
+
+    height: 90vh
+    max-width: 100rem 
 
     margin: auto
-    overflow: scroll
     pointer-events: none
+    text-align: center //子要素がinline-blockなのでセンタリングする
+    display: flex
+    flex-direction: column
 
-    >.e-nenpyo
+    background: blue
+
+    >.e-header
+      flex: 0 0 auto
+
+    >.e-contents
+      flex: 1 1 auto
+      background: red
       pointer-events: auto
+      overflow: hidden
 
-      position: relative
+      display: flex
 
-      width: 40rem
-      max-width: 100%
+      text-align: left //親要素の centerを解除
 
-      margin: 5rem auto
+      >.e-nenpyo
+        background: green
 
-      >.e-header
-        position: sticky
-        top: 0
-        z-index: 2
+        position: relative
 
-        background: #aaa
-        border-top-left-radius: $border-radius
-        border-top-right-radius: $border-radius
-        height: $header-height
+        width: 40rem
+        max-width: 100%
 
-        >.e-title 
-          margin-left: 1rem
-          line-height: $header-height
-          
+        overflow: scroll
 
-      >.e-list
-        display: flex
-        flex-direction: column
 
-        >.e-item
-          display: flex
+        >.e-header
+          position: sticky
+          top: 0
+          z-index: 2
 
-          &:hover
-            >.e-year
-              background: yellow
-            >.e-content
-              overflow: visible
-              z-index: 1
-              >.e-paper
-                background: yellow
-                box-shadow: 0 2px 3px rgba(0,0,0,0.3)
+          background: #aaa
+          border-top-left-radius: $border-radius
+          border-top-right-radius: $border-radius
+          height: $header-height
 
-          >.e-year
-            flex: 0 0 auto
-            width: 5rem 
-            background: #ddd
-            padding: .5rem
-            font-size: 1.2rem
-            color: #aaa
-
-          >.e-content
-            flex: 1 1 auto
-            overflow: hidden
-            position: relative
+          >.e-title 
+            margin-left: 1rem
+            line-height: $header-height
             
 
-            >.e-paper
+        >.e-list
+          display: flex
+          flex-direction: column
+
+          >.e-item
+            display: flex
+
+            &:hover
+              >.e-year
+                background: yellow
+              >.e-content
+                overflow: visible
+                z-index: 1
+                >.e-paper
+                  background: yellow
+                  box-shadow: 0 2px 3px rgba(0,0,0,0.3)
+
+            >.e-year
+              flex: 0 0 auto
+              width: 5rem 
+              background: #ddd
               padding: .5rem
-              background: white
+              font-size: 1.2rem
+              color: #aaa
+
+            >.e-content
+              flex: 1 1 auto
+              overflow: hidden
+              position: relative
+              
+
+              >.e-paper
+                padding: .5rem
+                background: white
+
+      >.e-event
+        flex: 1 1 auto
+        background: purple
+        top: 3rem
+        background: white
+        border-left: 5px solid orange
+
+        overflow: scroll
+
+        >.e-detail
+          height: 90vh
+          display: flex
+          flex-direction: column
+          >.e-desc
+            flex: 1 1 auto
+            background: #eee
+            padding: 2rem
+            
+
