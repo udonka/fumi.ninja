@@ -13,7 +13,8 @@ export default class SubNenpyo extends Component{
         const splited = item.split(",");
         return {
           year: splited[0],
-          content: splited[1]
+          content: splited[1],
+          desc: splited[2],
         }
       }
       else{
@@ -72,7 +73,7 @@ export default class SubNenpyo extends Component{
                 .c-event-item
                   .e-year
           li(key=index).e-item
-            .c-event-item
+            .c-event-item.m-hoverable
               h2.e-year= year
               .e-content
                 if events.length > 1 
@@ -81,7 +82,7 @@ export default class SubNenpyo extends Component{
                 .e-paper
                   //複数ならばバッジを表示
                   each event,index in  events
-                    Link.e-event(to="/single-nenpyo/" + this.props.nenpyo.title + "/" + year + "/" + event.content key=index)= event.content
+                    Link.e-event.m-hoverable(to="/single-nenpyo/" + this.props.nenpyo.title + "/" + year + "/" + event.content key=index)= event.content
 
           - lastYear = year
     `;

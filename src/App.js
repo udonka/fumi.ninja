@@ -52,7 +52,7 @@ class App extends Component{
     .c-page-wrapper
       .e-header
         .c-header
-          h1 fumi.ninja 
+          h1(style={textAlign:"center"}) 忍者年表
 
       .e-content
         //todo 引数渡したい
@@ -63,15 +63,16 @@ class App extends Component{
         .e-fixed
           Switch
             Route(path="/single-nenpyo/:nenpyo_id/:year/:event_id" 
-              render=${(props)=>pug`PopupEvent(nenpyos=nenpyos ...props)`})
+              render=${(props)=>pug`PopupNenpyo(nenpyos=nenpyos ...props)`})
 
             Route(path="/single-nenpyo/:nenpyo_id" 
               render=${(props)=>pug`PopupNenpyo(nenpyos=nenpyos ...props)`})
 
 
-      .e-footer
-        .c-controls
-          p ninja 
+      //
+        .e-footer
+          .c-controls
+            p ninja 
     `;
   }
 }
