@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import { Link } from "react-router-dom";
 
 export default function PopupNenpyo(props){
@@ -44,6 +44,17 @@ export default function PopupNenpyo(props){
     props.history.push('/')
   }
 
+  const eventsRef = useRef(null); //スクロールのために使う
+  const currentEventRef = useRef(null);
+
+  //did update
+  useEffect(() => {
+    eventsRef.current.scrollTop = currentEventRef.current.offsetTop;
+    
+  });
+
+
+
   return pug`
     .c-popup-nenpyo(id="popup_"+nenpyo.title )
       .e-shadow(onClick=close)
@@ -57,68 +68,32 @@ export default function PopupNenpyo(props){
           .e-nenpyo
             ol.e-list
               - let lastYear = null
-              each year in Object.keys(collapsedHistory)
+              each year,index in Object.keys(collapsedHistory)
                 - const events = collapsedHistory[year];
-                li.e-item(key=year)
+                li.e-item(key=index)
                   .c-event-item.m-hoverable(className=currentEvent && currentEvent.year==year?"m-active":"")
                     h2.e-year= year
                     .e-content
                       .e-paper
                         //複数ならばバッジを表示
-                        each event,index in  events
+                        each event,index in events
                           Link.e-event.m-hoverable(to="/single-nenpyo/" + nenpyo.title + "/" + year + "/" + event.content className=(currentEvent == event ? "m-active":"") key=index)= event.content
 
           if event_id
-            .e-event
-              each event in nenpyo.history
-                .e-detail
+            .e-events(ref=eventsRef)
+              each event,index in nenpyo.history
+                //refで現在の要素だけ選んでいる
+                .e-detail(key=index ref=(a)=>event_id == event.content ? currentEventRef.current = a : "aiu" )
                   .e-header
-                    .c-event-item
+                    Link.c-event-item.m-hoverable(to="/single-nenpyo/" + nenpyo.title + "/" + event.year + "/" + event.content className=(currentEvent == event ? "m-active":""))
                       h2.e-year= event.year
                       .e-content
                         .e-paper
-                          .e-event= event.content
-                  .e-desc= event.desc
+                          .e-event(className=(event_id == event.content ? "m-active":""))= event.content
+                  .e-desc= event.desc || "せつめい"
                 
 
 
 
-                //
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo p aiueo
-                  p aiueo
   `;
 }
