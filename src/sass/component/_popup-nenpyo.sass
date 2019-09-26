@@ -7,7 +7,6 @@
   bottom: 0
   z-index: 10
 
-  background: black
 
   &.is-shown
     display: block
@@ -36,14 +35,13 @@
     display: flex
     flex-direction: column
 
-    background: blue
+    background: white
 
     >.e-header
       flex: 0 0 auto
 
     >.e-contents
       flex: 1 1 auto
-      background: red
       pointer-events: auto
       overflow: hidden
 
@@ -52,7 +50,7 @@
       text-align: left //親要素の centerを解除
 
       >.e-nenpyo
-        background: green
+        flex: 0 1 auto
 
         position: relative
 
@@ -118,7 +116,7 @@
         border-left: 5px solid orange
 
         overflow: scroll
-        position: relative
+        position: relative //offset の基準となるため。 子要素を
 
         >.e-detail
           display: flex
