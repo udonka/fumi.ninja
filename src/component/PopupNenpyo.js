@@ -1,5 +1,5 @@
-
 import React, {useEffect, useRef} from 'react';
+import {animateScroll as scroll} from 'react-scroll';
 import { Link } from "react-router-dom";
 
 export default function PopupNenpyo(props){
@@ -45,11 +45,20 @@ export default function PopupNenpyo(props){
   }
 
   const eventsRef = useRef(null); //スクロールのために使う
+  const currentLineRef = useRef(null);
   const currentEventRef = useRef(null);
 
-  //did update
+
+  //did update 描画しなおしが起こったとき
   useEffect(() => {
-    eventsRef.current.scrollTop = currentEventRef.current.offsetTop;
+
+
+    //event_idが選択されていたら： = /single-nenpyo/忍者の文学/1661/甲陽軍鑑末書結要本 とかいうURLのとき
+    if(event_id){
+      console.log({offsetTop:currentLineRef.current.offsetTop});
+      scroll.scrollTo(currentLineRef.current.offsetTop - 100, {containerId:"nenpyo_scroll_container", duration:300, smooth:"easeInOutQuart"})
+      scroll.scrollTo(currentEventRef.current.offsetTop, {containerId:"events_scroll_container", duration:300, smooth:"easeInOutQuart"})
+    }
     
   });
 
@@ -65,31 +74,44 @@ export default function PopupNenpyo(props){
             Link.e-link(to="/") 閉
 
         .e-contents 
-          .e-nenpyo
+          .e-nenpyo#nenpyo_scroll_container 
             ol.e-list
               - let lastYear = null
               each year,index in Object.keys(collapsedHistory)
                 - const events = collapsedHistory[year];
-                li.e-item(key=index)
-                  .c-event-item.m-hoverable(className=currentEvent && currentEvent.year==year?"m-active":"")
+                - let isCurrentYear = currentEvent && currentEvent.year==year;
+
+                li.e-item(key=index ref= (li)=>isCurrentYear ? currentLineRef.current = li : "aiu" )
+                  .c-event-item.m-hoverable(className= isCurrentYear?"m-active":"")
                     h2.e-year= year
                     .e-content
                       .e-paper
                         //複数ならばバッジを表示
                         each event,index in events
-                          Link.e-event.m-hoverable(to="/single-nenpyo/" + nenpyo.title + "/" + year + "/" + event.content className=(currentEvent == event ? "m-active":"") key=index)= event.content
+                          - let isCurrent = currentEvent == event;
+                          Link.e-event.m-hoverable(
+                            to="/single-nenpyo/" + nenpyo.title + "/" + year + "/" + event.content 
+                            className=(isCurrent ? "m-active":"") 
+                            key=index
+                          )= event.content
 
           if event_id
-            .e-events(ref=eventsRef)
+            //idはsmooth scroll に使う
+            .e-events#events_scroll_container(ref=eventsRef)
               each event,index in nenpyo.history
                 //refで現在の要素だけ選んでいる
-                .e-detail(key=index ref=(a)=>event_id == event.content ? currentEventRef.current = a : "aiu" )
+                - let isCurrent = year + "_" + event_id == event.year + "_" +event.content;
+
+                .e-detail(key=index ref=(a)=>isCurrent ? currentEventRef.current = a : "aiu" )
                   .e-header
-                    Link.c-event-item.m-hoverable(to="/single-nenpyo/" + nenpyo.title + "/" + event.year + "/" + event.content className=(currentEvent == event ? "m-active":""))
+                    Link.c-event-item.m-hoverable(
+                      to="/single-nenpyo/" + nenpyo.title + "/" + event.year + "/" + event.content
+                      className=(isCurrent ? "m-active":"")
+                    )
                       h2.e-year= event.year
                       .e-content
                         .e-paper
-                          .e-event(className=(event_id == event.content ? "m-active":""))= event.content
+                          .e-event(className=(isCurrent ? "m-active":""))= event.content
                   .e-desc= event.desc || "せつめい"
                 
 
