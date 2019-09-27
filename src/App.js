@@ -60,6 +60,7 @@ class App extends Component{
         .e-scroller(onScroll=this.scrolled)
           Nenpyos
 
+        
         .e-fixed
           Switch
             Route(path="/single-nenpyo/:nenpyo_id/:year/:event_id" 
