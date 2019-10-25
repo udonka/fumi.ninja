@@ -11,10 +11,13 @@ export default function PopupNenpyo(props){
   nenpyo.history = nenpyo.history.map(item=>{
     if(typeof item === "string"){
       const splited = item.split(",");
+      console.log("splited");
+      console.log(splited);
       return {
         year: splited[0],
         content: splited[1],
         desc: splited[2],
+        source: splited[3],
       }
     }
     else{
@@ -112,7 +115,9 @@ export default function PopupNenpyo(props){
                       .e-content
                         .e-paper
                           .e-event(className=(isCurrent ? "m-active":""))= event.content
-                  .e-desc= event.desc || "せつめい"
+                  .e-desc= event.desc 
+                    if(event.source )
+                      .e-source= event.source 
                 
 
 

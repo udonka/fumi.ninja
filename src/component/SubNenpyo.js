@@ -15,6 +15,7 @@ export default class SubNenpyo extends Component{
           year: splited[0],
           content: splited[1],
           desc: splited[2],
+          source: splited[3],
         }
       }
       else{
