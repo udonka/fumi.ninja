@@ -19,6 +19,8 @@
     bottom: 0
     background: rgba(0,0,0,0.4)
 
+    pointer-events: auto
+
   >.e-nenpyo-wrapper
     position: absolute
     top: 2rem
@@ -43,14 +45,14 @@
     >.e-contents
       flex: 1 1 auto
       pointer-events: auto
-      overflow: hidden
+      overflow: scroll
 
       display: flex
 
       text-align: left //親要素の centerを解除
 
       >.e-nenpyo
-        flex: 0 1 auto
+        flex: 0 0 $column-width
 
         position: relative
 
@@ -125,5 +127,16 @@
             flex: 1 1 auto
             background: #eee
             padding: 2rem
+            >.e-source
+              display:  inline-block
+              float: right
+              border: solid 1px #888
+              color: #888
+              padding: 3px
+              border-radius: 3px
+              font-size: 1.4rem
+
+              
+
             
 

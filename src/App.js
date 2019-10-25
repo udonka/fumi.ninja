@@ -7,7 +7,8 @@ import SubNenpyo from "./component/SubNenpyo.js";
 import PopupNenpyo from "./component/PopupNenpyo.js";
 import PopupEvent from "./component/PopupEvent.js";
 
-import nenpyos from "./nenpyos.json";
+//import nenpyos from "./nenpyos.json";
+import nenpyos from "./kizuke.json";
 
 const itemHeight = 3; //sass側と合わせる
 //こういうことやらないためにcss module 使うといいのかな？
@@ -52,14 +53,15 @@ class App extends Component{
     .c-page-wrapper
       .e-header
         .c-header
-          h1(style={textAlign:"center"}) 忍者年表
+          h1(style={textAlign:"center"}) 木津家代々年表
 
       .e-content
         //todo 引数渡したい
 
         .e-scroller(onScroll=this.scrolled)
-          Nenpyos
+          Nenpyos(from=1580)
 
+        
         .e-fixed
           Switch
             Route(path="/single-nenpyo/:nenpyo_id/:year/:event_id" 
