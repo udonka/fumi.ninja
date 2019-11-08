@@ -1,7 +1,6 @@
 
 .c-nenpyos
   position: relative
-  background: red
   min-width: 100%
   display: inline-block
   margin-top: $header-height
@@ -12,14 +11,20 @@
   >.e-containers
     position: relative
     z-index: 2
-    margin-left: 5rem  //e-year-lines の e-yearのため
+    margin-left: $year-width  //c-year-lines の e-yearのため
     display: flex
     justify-content: flex-start
+
     >.e-col
       flex: 1 0 auto
       width: $column-width
       margin-right: 1rem
       position: relative
       background: yellow
+
+      >.e-navi
+        position: sticky
+        top: 0
+        background: red
 
 

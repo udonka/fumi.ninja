@@ -56,8 +56,8 @@ export default class SubNenpyo extends Component{
     return pug`
     .c-sub-nenpyo(id=this.props.nenpyo.title style={top:offsetRem + "rem"} ref=(node)=>{this.$subNenpyo=node})
       header.e-header
-        .c-nenpyo-header
-          h1.e-title= this.props.nenpyo.title
+        .c-nenpyo-header-new
+          .e-title= this.props.nenpyo.title
           Link.e-link(to="/single-nenpyo/"+this.props.nenpyo.title) 開
       ol.e-list
         - let lastYear = null
@@ -71,11 +71,14 @@ export default class SubNenpyo extends Component{
           if lastYear 
             each times,index in new Array(diff).fill(0)
               li(key=index).e-item
-                .c-event-item
-                  .e-year
+
           li(key=index).e-item
-            .c-event-item.m-hoverable
-              h2.e-year= year
+            .e-event-item
+              .e-year 
+                //まる
+                .e-icon 
+                  //テキスト
+                  span.e-text= year
               .e-content
                 if events.length > 1 
                   .e-num= events.length

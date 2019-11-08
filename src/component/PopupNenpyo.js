@@ -72,7 +72,7 @@ export default function PopupNenpyo(props){
       .e-shadow(onClick=close)
       .e-nenpyo-wrapper
         header.e-header
-          .c-nenpyo-header
+          .c-nenpyo-header-new
             h1.e-title= nenpyo.title
             Link.e-link(to="/") 閉
 

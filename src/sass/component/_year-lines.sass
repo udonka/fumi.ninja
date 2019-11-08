@@ -2,7 +2,7 @@
 .c-year-lines
   position: absolute
   z-index: 1
-  background: #eee
+  background: white
   top: 0
   left: 0
   right: 0
@@ -11,10 +11,21 @@
     >.e-line
       line-height: 1
       height: $item-height
-      border-bottom: 1px solid white
+      border-bottom: 1px solid #eee
+      font-size: 1.2rem
+
       >.e-year
-        line-height: 1
+        position: sticky 
+        left: 0
+        z-index: 300
+
+        display: block
+        height: 100%
         padding: .5rem
-        font-size: 1.2rem
-        color: #aaa
+
+        width: $year-width
+        background: rgba(#fff, 0.8)
+
+
+        // color: #aaa
       >.e-content
