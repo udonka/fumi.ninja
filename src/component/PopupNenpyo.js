@@ -18,6 +18,7 @@ export default function PopupNenpyo(props){
         content: splited[1],
         desc: splited[2],
         source: splited[3],
+        source_anchor: splited[4],
       }
     }
     else{
@@ -78,25 +79,28 @@ export default function PopupNenpyo(props){
 
         .e-contents 
           .e-nenpyo#nenpyo_scroll_container 
-            ol.e-list
+            ol.c-event-line.m-bg-white.m-scroll-full
               - let lastYear = null
               each year,index in Object.keys(collapsedHistory)
                 - const events = collapsedHistory[year];
                 - let isCurrentYear = currentEvent && currentEvent.year==year;
 
-                li.e-item(key=index ref= (li)=>isCurrentYear ? currentLineRef.current = li : "aiu" )
-                  .c-event-item.m-hoverable(className= isCurrentYear?"m-active":"")
-                    h2.e-year= year
+                li.e-item.m-height-auto(key=index ref= (li)=>isCurrentYear ? currentLineRef.current = li : "aiu" )
+                  .e-event-item.m-hoverable(className= isCurrentYear?"m-active":"")
+                    h2.e-year
+                      .c-year-icon
+                        .e-text= year
                     .e-content
-                      .e-paper
-                        //複数ならばバッジを表示
-                        each event,index in events
-                          - let isCurrent = currentEvent == event;
-                          Link.e-event.m-hoverable(
-                            to="/single-nenpyo/" + nenpyo.title + "/" + year + "/" + event.content 
-                            className=(isCurrent ? "m-active":"") 
-                            key=index
-                          )= event.content
+                      .e-hider.m-wrap
+                        .e-paper
+                          //複数ならばバッジを表示
+                          each event,index in events
+                            - let isCurrent = currentEvent == event;
+                            Link.e-event.m-wrap.m-hoverable(
+                              to="/single-nenpyo/" + nenpyo.title + "/" + year + "/" + event.content 
+                              className=(isCurrent ? "m-active":"") 
+                              key=index
+                            )= event.content
 
           if event_id
             //idはsmooth scroll に使う
@@ -107,20 +111,19 @@ export default function PopupNenpyo(props){
 
                 .e-detail(key=index ref=(a)=>isCurrent ? currentEventRef.current = a : "aiu" )
                   .e-header
-                    Link.c-event-item.m-hoverable(
+                    Link.c-event-header.m-hoverable(
                       to="/single-nenpyo/" + nenpyo.title + "/" + event.year + "/" + event.content
                       className=(isCurrent ? "m-active":"")
                     )
-                      h2.e-year= event.year
-                      .e-content
-                        .e-paper
-                          .e-event(className=(isCurrent ? "m-active":""))= event.content
+                      .e-year
+                        span.e-text= event.year
+                      .e-content= event.content
                   .e-desc= event.desc 
                     if(event.source )
-                      .e-source= event.source 
-                
-
-
-
+                      ul.e-sources
+                        li.e-item
+                          Link.e-source(to="/sources/" + event.source)
+                            .e-title= event.source 
+                            .e-anchor= event.source_anchor
   `;
 }

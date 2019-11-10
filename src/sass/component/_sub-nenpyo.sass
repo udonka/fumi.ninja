@@ -1,7 +1,5 @@
 
 .c-sub-nenpyo //c-nenpyos>.e-containers>.e-col の中
-  $line-width: .4rem
-  $circle-size: 2.4rem
 
   position: absolute
   top: 0
@@ -18,11 +16,9 @@
     color:  #000
     background: rgba($line-green, 0.1)
 
-    //別のコンポーネントへの依存はよくない・・・！
-    //が、hoverたときに浮き出てほしいから仕方ない。なにかいい方法はないものか
+    //年表全体がホバーされてるとき、ヘッダーはアクティブ
     .c-nenpyo-header-new
-      width: auto
-      box-shadow: 0 .1rem .2rem rgba(#000,0.5)
+      @extend .m-active
 
 
 
@@ -34,163 +30,4 @@
     transition: top 4s
 
     //>.c-nenpyo-header
-
-
-  //イベントが並ぶやつ
-  >.e-list
-    display: flex
-    flex-direction: column
-    border-left: $line-width solid $line-green
-    margin-left: .9rem
-
-    >.e-item
-      list-style: none
-      height: $item-height
-
-      .e-event-item
-        height: 100%
-        width: 100%
-        text-decoration: none // linkになりうるのでキャンセルしておく
-
-        position: relative
-
-        //年&contentが入るitemにホバーしたら、yearがハイライト
-        &:hover
-          >.e-year>.e-icon
-            width: $circle-size*2
-            height: $circle-size*2
-            top: -$circle-size 
-            left: -$circle-size 
-
-            box-shadow: 0 .3rem .3rem rgba(#000,0.5)
-            z-index: 3
-
-            >.e-text
-              text-indent: 0
-              overflow: hidden
-
-          >.e-content
-            overflow: visible
-            z-index: 1
-
-            >.e-num
-              display: none
-
-            >.e-hider
-              overflow-y: visible
-              >.e-fade-shadow
-                display: none
-
-
-
-              >.e-paper
-                box-shadow: 0px 1px 3px rgba(0,0,0,0.4)
-                padding-left: 1rem
-
-
-        >.e-year
-          position: relative
-          top: $circle-size/2
-          left: -$line-width/2
-
-          >.e-icon
-            position: absolute
-            top: -$circle-size/2 
-            left: -$circle-size/2 
-
-            display: flex
-            justify-content: center
-            align-items: center
-
-            border: 3px solid $line-green
-            width: $circle-size
-            height: $circle-size
-            border-radius: 50%
-
-            background: white
-            font-size: 1.2rem
-            color: #aaa
-
-            transition: .1s
-            >.e-text
-              transition: .1s
-              text-indent: -2ex
-              overflow: hidden
-           
-
-        >.e-content
-          margin-left: 2rem
-          //overflow がよくわからない
-          overflow-x: visible 
-          position: relative
-          height: 100%
-
-          >.e-num
-            position: absolute
-            left: .2rem
-            bottom: .2rem
-
-            background: rgba(#000, 0.5)
-            width: 2rem
-            height: 2rem
-            border-radius: 50%
-            line-height: 2rem
-            text-align: center
-            color: white
-
-          >.e-hider
-            display: inline-block
-            overflow-y: hidden 
-            height: 100%
-            position: relative
-
-
-            >.e-fade-shadow //徐々に透明になるグラデーション
-              content: " "
-              display: block
-              position: absolute
-              height: 1em
-              bottom: 0
-              left: 0
-              right: 0
-              background: transparent
-              background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(255,255,255,1) 34%, rgba(255,255,255,0) 100%)
-              
-            >.e-paper
-              background: white
-              padding: 0
-              padding-right: 1rem
-
-              transition: 1s
-              display: inline-block
-
-              >.e-event
-                line-height: 1
-                padding: .5rem .5rem 
-                background: white
-                display: block
-                color: inherit
-                text-decoration: none
-
-                white-space: nowrap
-                overflow: hidden
-                border-bottom: 1px solid #eee
-
-
-                &.m-title
-                  text-align: center
-                  font-weight: bold
-
-
-                &.m-hoverable:hover
-                  background: yellow
-
-                &.m-active,
-                &.m-hoverable.m-active
-                  background: orange
-
-                &:last-child
-                  border-bottom: 0
-                  
-
 

@@ -1,0 +1,40 @@
+.c-event-header{
+  display: flex;
+  height: 100%;
+  width: 100%;
+  text-decoration: none; // linkになりうるのでキャンセルしておく
+
+  color: inherit;
+  border-bottom: 1px solid #eee;
+
+  &.m-active{
+    border-color: $line-green;
+
+    >.e-year{
+      color: $line-green;
+    }
+  }
+
+  >.e-year{
+    flex: 0 0 auto;
+    padding: .5rem;
+    color: #aaa;
+
+
+    >.e-text{
+      display: inline;
+      font-size: 1.2rem;
+    }
+  }
+
+  >.e-content{
+    flex: 1 1 auto;
+      
+    background: white;
+    line-height: 1;
+    padding: .5rem .5rem ;
+
+    text-decoration: none;
+
+  }
+}

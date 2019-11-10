@@ -1,0 +1,49 @@
+.c-year-icon{
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  border: 3px solid $line-green;
+  width: $circle-size;
+  height: $circle-size;
+  border-radius: 50%;
+
+  background: white;
+  font-size: 1.2rem;
+  color: #aaa;
+
+  transition: .1s;
+
+
+  >.e-text{
+    transition: .1s;
+    text-indent: -2ex;
+    overflow: hidden;
+  }
+
+  &.m-center{
+    position: absolute;
+    left: -$circle-size/2;
+    top: -$circle-size/2;
+  }
+
+  &.m-big{
+
+    &.m-center{
+      top: -$circle-size ;
+      left: -$circle-size ;
+    }
+
+    width: $circle-size*2;
+    height: $circle-size*2;
+
+    box-shadow: 0 .3rem .3rem rgba(#000,0.5);
+    z-index: 3;
+
+    >.e-text{
+      text-indent: 0;
+    }
+  }
+  
+}

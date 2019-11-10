@@ -16,6 +16,7 @@ export default class SubNenpyo extends Component{
           content: splited[1],
           desc: splited[2],
           source: splited[3],
+          source_anchor: splited[4],
         }
       }
       else{
@@ -59,7 +60,7 @@ export default class SubNenpyo extends Component{
         .c-nenpyo-header-new
           .e-title= this.props.nenpyo.title
           Link.e-link(to="/single-nenpyo/"+this.props.nenpyo.title) 開
-      ol.e-list
+      ol.c-event-line
         - let lastYear = null
 
         each year,index in Object.keys(this.collapsedHistory)
@@ -73,10 +74,10 @@ export default class SubNenpyo extends Component{
               li(key=index).e-item
 
           li(key=index).e-item
-            .e-event-item
+            .e-event-item.m-hover-slide
               .e-year 
                 //まる
-                .e-icon 
+                .c-year-icon 
                   //テキスト
                   span.e-text= year
               .e-content

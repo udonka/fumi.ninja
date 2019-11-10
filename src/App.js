@@ -5,7 +5,6 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 
 import SubNenpyo from "./component/SubNenpyo.js";
 import PopupNenpyo from "./component/PopupNenpyo.js";
-import PopupEvent from "./component/PopupEvent.js";
 
 //import nenpyos from "./nenpyos.json";
 import nenpyos from "./kizuke.json";
