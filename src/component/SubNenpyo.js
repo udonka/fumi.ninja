@@ -80,13 +80,20 @@ export default class SubNenpyo extends Component{
                   //テキスト
                   span.e-text= year
               .e-content
-                if events.length > 1 
-                  .e-num= events.length
 
-                .e-paper
+                .e-hider
+
+                  .e-paper
+                    each event,index in  events
+                      Link.e-event.m-hoverable(to="/single-nenpyo/" + this.props.nenpyo.title + "/" + year + "/" + event.content key=index)= event.content
+
+                  //2個までのときは影はいらない
+                  if events.length > 2 
+                    .e-fade-shadow
+
+                if events.length > 2 
                   //複数ならばバッジを表示
-                  each event,index in  events
-                    Link.e-event.m-hoverable(to="/single-nenpyo/" + this.props.nenpyo.title + "/" + year + "/" + event.content key=index)= event.content
+                  .e-num= events.length
 
           - lastYear = year
     `;
