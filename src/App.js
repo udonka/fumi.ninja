@@ -7,7 +7,7 @@ import SubNenpyo from "./component/SubNenpyo.js";
 import PopupNenpyo from "./component/PopupNenpyo.js";
 
 //import nenpyos from "./nenpyos.json";
-import nenpyos from "./kizuke.json";
+import {histories as nenpyos} from "./kizuke.json";
 
 const itemHeight = 5; //sass側の $item-height と合わせる
 //こういうことやらないためにcss module 使うといいのかな？
@@ -78,6 +78,16 @@ class App extends Component{
 
             Route(path="/single-nenpyo/:nenpyo_id" 
               render=${(props)=>pug`PopupNenpyo(nenpyos=nenpyos ...props)`})
+
+            Route(path="/sources/:source_title" render=${(props)=>pug`
+              div
+                p hey hey !!!
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+            `})
 
 
       //
