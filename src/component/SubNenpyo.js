@@ -74,7 +74,7 @@ export default class SubNenpyo extends Component{
               li(key=index).e-item
 
           li(key=index).e-item
-            .e-event-item.m-hover-slide
+            .e-event-item
               .e-year 
                 //まる
                 .c-year-icon 
@@ -84,7 +84,7 @@ export default class SubNenpyo extends Component{
 
                 .e-hider
 
-                  .e-paper
+                  .e-paper.m-hover-slide
                     each event,index in  events
                       Link.e-event.m-hoverable(to="/single-nenpyo/" + this.props.nenpyo.title + "/" + year + "/" + event.content key=index)= event.content
 
