@@ -1,6 +1,6 @@
 
-
 .c-sub-nenpyo //c-nenpyos>.e-containers>.e-col の中
+
   position: absolute
   top: 0
   left: 0
@@ -8,6 +8,18 @@
   background: rgba(255,255,255,0.6)
 
   margin-top: -$header-height
+
+  color:  #888
+
+  &:hover //普段はちょっと薄いけど、浮き出る
+    z-index: 3
+    color:  #000
+    background: rgba($line-green, 0.1)
+
+    //年表全体がホバーされてるとき、ヘッダーはアクティブ
+    .c-nenpyo-header-new
+      @extend .m-active
+
 
 
   >.e-header
@@ -18,14 +30,4 @@
     transition: top 4s
 
     //>.c-nenpyo-header
-
-
-  >.e-list
-    display: flex
-    flex-direction: column
-
-    >.e-item
-      list-style: none
-      height: $item-height
-
 

@@ -28,7 +28,6 @@
     right: 0
     bottom: 2rem
 
-    height: 90vh
     max-width: 100rem 
 
     margin: auto
@@ -37,29 +36,34 @@
     display: flex
     flex-direction: column
 
-    background: white
 
     >.e-header
       flex: 0 0 auto
 
     >.e-contents
       flex: 1 1 auto
+      height: 0px //なんかこれがないと長さが延々と長くなる
       pointer-events: auto
-      overflow: scroll
 
       display: flex
 
+      margin-left: 1rem 
+      margin-right: 1rem 
       text-align: left //親要素の centerを解除
 
       >.e-nenpyo
-        flex: 0 0 $column-width
+        flex: 1 0 $column-width
 
         position: relative
+        margin-left: -1rem
 
-        width: 40rem
         max-width: 100%
+        min-width:  $column-width
 
         overflow: scroll
+
+        +mq(sp)
+          display: none
 
 
         >.e-header
@@ -115,28 +119,43 @@
       >.e-events
         flex: 1 1 auto
         background: white
-        border-left: 5px solid orange
+        border-left: 1px solid #eee
 
         overflow: scroll
         position: relative //offset の基準となるため。 子要素を
+
+        padding-bottom: 90vh
 
         >.e-detail
           display: flex
           flex-direction: column
           >.e-desc
             flex: 1 1 auto
-            background: #eee
             padding: 2rem
-            >.e-source
-              display:  inline-block
-              float: right
-              border: solid 1px #888
-              color: #888
-              padding: 3px
-              border-radius: 3px
-              font-size: 1.4rem
 
-              
+            >.e-sources
+              list-style-type: none
+              display: flex
+              justify-content: flex-end
+              margin: .5rem 0
 
-            
+              >.e-item
+                
+                >.e-source
+                  $gray: #888
+                  display:  inline-flex
+                  float: right
+                  border: solid 1px $gray
+                  color: $gray
+                  border-radius: 3px
+                  font-size: 1.4rem
+                  text-decoration: none
+                  margin-left: .5rem
 
+                  >.e-title
+                    padding: 3px
+
+                  >.e-anchor
+                    padding: 3px
+                    background: $gray
+                    color: white

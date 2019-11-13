@@ -5,12 +5,11 @@ import { BrowserRouter, Route, Link, Switch } from "react-router-dom";
 
 import SubNenpyo from "./component/SubNenpyo.js";
 import PopupNenpyo from "./component/PopupNenpyo.js";
-import PopupEvent from "./component/PopupEvent.js";
 
 //import nenpyos from "./nenpyos.json";
-import nenpyos from "./kizuke.json";
+import {histories as nenpyos} from "./kizuke.json";
 
-const itemHeight = 3; //sass側と合わせる
+const itemHeight = 5; //sass側の $item-height と合わせる
 //こういうことやらないためにcss module 使うといいのかな？
 
 
@@ -29,10 +28,18 @@ function Nenpyos(props){
           ol.e-list
             each year,index in years
               li(key=index).e-line
-                h2.e-year= year
+                span.e-year= year
       .e-containers
         each nenpyo in nenpyos
           .e-col(key=nenpyo.title)
+            //↓こいつもstickyにしたいんだが、e-colの高さをyearsと一緒にしなければならない
+            //別パーツでやったほうがいいかもしれない。
+            .e-navi
+            //
+              .c-nenpyo-header-new
+                .e-title= nenpyo.title
+                Link.e-link(to="/single-nenpyo/"+nenpyo.title) 開
+
             SubNenpyo(
               nenpyo=nenpyo 
               startYear=startYear 
@@ -63,12 +70,24 @@ class App extends Component{
 
         
         .e-fixed
+          // どちらかにする
+          // PopupNenpyo の中でやるべきなのかも？できるのかな？
           Switch
             Route(path="/single-nenpyo/:nenpyo_id/:year/:event_id" 
               render=${(props)=>pug`PopupNenpyo(nenpyos=nenpyos ...props)`})
 
             Route(path="/single-nenpyo/:nenpyo_id" 
               render=${(props)=>pug`PopupNenpyo(nenpyos=nenpyos ...props)`})
+
+            Route(path="/sources/:source_title" render=${(props)=>pug`
+              div
+                p hey hey !!!
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+                p= props.match.params.source_title
+            `})
 
 
       //

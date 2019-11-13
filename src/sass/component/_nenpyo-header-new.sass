@@ -1,0 +1,50 @@
+
+
+
+.c-nenpyo-header-new
+  position: relative
+  z-index: 2
+
+  height: 100%
+  width: 100%
+
+  border: .3rem solid $line-green
+  background: white
+  border-radius: $header-height/2
+  height: $header-height
+
+  display: inline-flex
+
+  transition: .1s
+
+  &:hover,
+  &.m-active
+    width: auto
+    box-shadow: 0 .1rem .2rem rgba(#000,0.5)
+
+  >.e-title
+    display: inline-flex
+    align-items: center
+
+    margin-left: 1rem
+    margin-right: 1rem
+    line-height: 1
+    white-space: nowrap
+    overflow: hidden
+
+  >.e-link
+    flex: none
+    margin: auto 0 auto auto
+
+    $button-size: $header-height * 0.8
+    width: $button-size
+    height: $button-size
+    line-height: $button-size
+
+    text-align: center
+    border-radius: 50%
+
+    background: $line-green
+    color: white
+    text-decoration: none
+    line-height: 

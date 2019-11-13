@@ -16,6 +16,7 @@ export default class SubNenpyo extends Component{
           content: splited[1],
           desc: splited[2],
           source: splited[3],
+          source_anchor: splited[4],
         }
       }
       else{
@@ -56,10 +57,10 @@ export default class SubNenpyo extends Component{
     return pug`
     .c-sub-nenpyo(id=this.props.nenpyo.title style={top:offsetRem + "rem"} ref=(node)=>{this.$subNenpyo=node})
       header.e-header
-        .c-nenpyo-header
-          h1.e-title= this.props.nenpyo.title
+        .c-nenpyo-header-new
+          .e-title= this.props.nenpyo.title
           Link.e-link(to="/single-nenpyo/"+this.props.nenpyo.title) 開
-      ol.e-list
+      ol.c-event-line
         - let lastYear = null
 
         each year,index in Object.keys(this.collapsedHistory)
@@ -71,19 +72,29 @@ export default class SubNenpyo extends Component{
           if lastYear 
             each times,index in new Array(diff).fill(0)
               li(key=index).e-item
-                .c-event-item
-                  .e-year
-          li(key=index).e-item
-            .c-event-item.m-hoverable
-              h2.e-year= year
-              .e-content
-                if events.length > 1 
-                  .e-num= events.length
 
-                .e-paper
+          li(key=index).e-item
+            .e-event-item
+              .e-year 
+                //まる
+                .c-year-icon 
+                  //テキスト
+                  span.e-text= year
+              .e-content
+
+                .e-hider
+
+                  .e-paper.m-hover-slide
+                    each event,index in  events
+                      Link.e-event.m-hoverable(to="/single-nenpyo/" + this.props.nenpyo.title + "/" + year + "/" + event.content key=index)= event.content
+
+                  //2個までのときは影はいらない
+                  if events.length > 2 
+                    .e-fade-shadow
+
+                if events.length > 2 
                   //複数ならばバッジを表示
-                  each event,index in  events
-                    Link.e-event.m-hoverable(to="/single-nenpyo/" + this.props.nenpyo.title + "/" + year + "/" + event.content key=index)= event.content
+                  .e-num= events.length
 
           - lastYear = year
     `;
