@@ -26,7 +26,7 @@
     top: 2rem
     left: 0
     right: 0
-    bottom: 0
+    bottom: 2rem
 
     max-width: 100rem 
 
@@ -42,11 +42,12 @@
 
     >.e-contents
       flex: 1 1 auto
+      height: 0px //なんかこれがないと長さが延々と長くなる
       pointer-events: auto
-      overflow: scroll
 
       display: flex
 
+      margin-left: 1rem 
       margin-right: 1rem 
       text-align: left //親要素の centerを解除
 
@@ -54,6 +55,7 @@
         flex: 1 0 $column-width
 
         position: relative
+        margin-left: -1rem
 
         max-width: 100%
         min-width:  $column-width
