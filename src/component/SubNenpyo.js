@@ -82,7 +82,7 @@ export default class SubNenpyo extends Component{
                   span.e-text= year
               .e-content
 
-                .e-hider
+                .e-hider.m-show
 
                   .e-paper.m-hover-slide
                     each event,index in  events

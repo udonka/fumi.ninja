@@ -107,6 +107,10 @@
           position: relative;
           display: inline-block;
 
+          &.m-show{
+            overflow-y: visible;
+          }
+
 
           //これをしないとガクツキがおこる
           &.m-wrap{
