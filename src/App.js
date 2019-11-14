@@ -7,7 +7,7 @@ import SubNenpyo from "./component/SubNenpyo.js";
 import PopupNenpyo from "./component/PopupNenpyo.js";
 
 //import nenpyos from "./nenpyos.json";
-import {histories as nenpyos} from "./aratake.json";
+import {histories as nenpyos, nenpyo_title, sources} from "./aratake.json";
 
 const itemHeight = 3; //sass側の $item-height と合わせる
 //こういうことやらないためにcss module 使うといいのかな？
@@ -58,7 +58,7 @@ class App extends Component{
     .c-page-wrapper
       .e-header
         .c-header
-          h1(style={textAlign:"center"}) 木津家代々年表
+          h1(style={textAlign:"center"})= nenpyo_title
 
       .e-content
         //todo 引数渡したい

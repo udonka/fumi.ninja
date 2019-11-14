@@ -79,7 +79,11 @@ export default class SubNenpyo extends Component{
                 //まる
                 .c-year-icon 
                   //テキスト
-                  span.e-text= year
+                  span.e-text
+                    span.e-12= Math.floor(year/100)
+                    span.e-34= ("00" + (year%100)).slice(-2)
+                    //br
+                    //span.e-gengo= "天保2"
               .e-content
 
                 .e-hider.m-show

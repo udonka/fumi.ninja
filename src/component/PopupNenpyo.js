@@ -89,7 +89,11 @@ export default function PopupNenpyo(props){
                   .e-event-item.m-hoverable(className= isCurrentYear?"m-active":"")
                     h2.e-year
                       .c-year-icon
-                        .e-text= year
+                        .e-text
+                          span.e-12= Math.floor(year/100)
+                          span.e-34= ("00" + (year%100)).slice(-2)
+                          //br
+                          //span.e-gengo= "天保2"
                     .e-content
                       .e-hider.m-wrap
                         .e-paper
