@@ -7,16 +7,14 @@ import SubNenpyo from "./component/SubNenpyo.js";
 import PopupNenpyo from "./component/PopupNenpyo.js";
 
 //import nenpyos from "./nenpyos.json";
-import {histories as nenpyos} from "./kizuke.json";
+import {histories as nenpyos, nenpyo_title, sources} from "./aratake.json";
 
-const itemHeight = 5; //sass側の $item-height と合わせる
+const itemHeight = 3; //sass側の $item-height と合わせる
 //こういうことやらないためにcss module 使うといいのかな？
-
 
 function Nenpyos(props){
   const startYear = props.from || 1600;
   const endYear = props.to || 2000;
-
 
   const interval = endYear - startYear + 1;
   const years = [...Array(interval).keys()].map(year => year + startYear)
@@ -60,13 +58,13 @@ class App extends Component{
     .c-page-wrapper
       .e-header
         .c-header
-          h1(style={textAlign:"center"}) 木津家代々年表
+          h1(style={textAlign:"center"})= nenpyo_title
 
       .e-content
         //todo 引数渡したい
 
         .e-scroller(onScroll=this.scrolled)
-          Nenpyos(from=1580)
+          Nenpyos(from=1601)
 
         
         .e-fixed
