@@ -7,7 +7,7 @@ import SubNenpyo from "./component/SubNenpyo.js";
 import PopupNenpyo from "./component/PopupNenpyo.js";
 
 //import nenpyos from "./nenpyos.json";
-import {histories as nenpyos, nenpyo_title, sources} from "./aratake.json";
+import {histories as nenpyos, nenpyo_title, sources} from "./nenpyos.json";
 
 const itemHeight = 3; //sass側の $item-height と合わせる
 //こういうことやらないためにcss module 使うといいのかな？

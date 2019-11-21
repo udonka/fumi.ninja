@@ -68,7 +68,6 @@ export default class SubNenpyo extends Component{
           - const diff = year - lastYear - 1;
 
           //差があったら間に入れる
-
           if lastYear 
             each times,index in new Array(diff).fill(0)
               li(key=index).e-item
@@ -86,7 +85,7 @@ export default class SubNenpyo extends Component{
                     //span.e-gengo= "天保2"
               .e-content
 
-                .e-hider.m-show
+                .e-hider 
 
                   .e-paper.m-hover-slide
                     each event,index in  events
